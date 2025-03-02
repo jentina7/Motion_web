@@ -45,11 +45,13 @@ class Consultation(models.Model):
     def str(self):
         return f"Заявка от {self.name} ({self.phone})"
 
+
 # модель команды (про нас)
 class Team(models.Model):
     name = models.CharField(max_length=150)
     speciality = models.CharField(max_length=200)
     team_image = models.ImageField(upload_to='team_images/')
+
 
 # модель информации про курс
 class AboutUs(models.Model):
