@@ -3,31 +3,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from phonenumber_field.modelfields import PhoneNumberField
 
 
-class Home(models.Model):
-    title = models.CharField(max_length=100)
-    description = models.TextField()
-    # consultation = models.ForeignKey()
-    # exam = models.For
-
-    def __str__(self):
-        return self.title
-
-
-# Модель программы обучения за границей
-class StudyAbroadProgram(models.Model):
-    title = models.CharField(max_length=255)
-    description = models.TextField()
-    image = models.ImageField(upload_to='study_images/')
-
-    def str(self):
-        return self.title
-
-
-class HomeImage(models.Model):
-    home_image = models.ForeignKey(Home, on_delete=models.CASCADE)
-    image = models.ImageField(verbose_name="image/")
-
-
 class Country(models.Model):
     country_name = models.CharField(max_length=60)
     country_image = models.ImageField(upload_to='country_images/')
@@ -138,6 +113,29 @@ class CambrigeExam(models.Model):
 
 
 
+class Home(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+    consultation = models.ForeignKey(Consultation, on_delete=models.CASCADE)
+    exam = models.ForeignKey(Exam, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+
+# Модель программы обучения за границей
+class StudyAbroadProgram(models.Model):
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    image = models.ImageField(upload_to='study_images/')
+
+    def str(self):
+        return self.title
+
+
+class HomeImage(models.Model):
+    home_image = models.ForeignKey(Home, on_delete=models.CASCADE)
+    image = models.ImageField(verbose_name="image/")
 
 
 
