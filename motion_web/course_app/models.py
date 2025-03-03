@@ -10,6 +10,7 @@ class Country(models.Model):
     def __str__(self):
         return self.country_name
 
+
 class Speciality(models.Model):
     speciality_name = models.CharField(max_length=100, unique=True)
 
@@ -59,6 +60,7 @@ class UniversityImage(models.Model):
     university_image = models.ForeignKey(University, on_delete=models.CASCADE)
     image = models.ImageField(verbose_name="image/")
 
+
 # Модель экзаменов
 class Exam(models.Model):
     name = models.CharField(max_length=100)
@@ -70,8 +72,8 @@ class Exam(models.Model):
         ('Other', 'Other'),
     ])
 
-    def str(self):
-        return self.name
+    def __str__(self):
+        return f'{self.name}, {self.exam_type}'
 
 
 # Модель отзыва студента
@@ -87,10 +89,9 @@ class Consultation(models.Model):
     contact = PhoneNumberField(region='KG', null=True, blank=True)
     email = models.EmailField(blank=True, null=True)
     message = models.TextField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
 
-    def str(self):
-        return f"Заявка от {self.name} ({self.phone})"
+    def __str__(self):
+        return f'{self.first_name}'
 
 
 # модель команды (про нас)
@@ -98,6 +99,9 @@ class Team(models.Model):
     name = models.CharField(max_length=150)
     speciality = models.CharField(max_length=200)
     team_image = models.ImageField(upload_to='team_images/')
+
+    def __str__(self):
+        return f'{self.name}, {self.speciality}'
 
 
 # модель информации про курс
@@ -107,12 +111,17 @@ class AboutUs(models.Model):
     image = models.ImageField(upload_to='exam_images/')
     our_team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='our_teams')
 
+    def __str__(self):
+        return f'{self.title}'
+
 
 class CambrigeExam(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField()
     exam_image = models.ImageField(upload_to='cambrige_exam_images/')
 
+    def __str__(self):
+        return f'{self.name}'
 
 
 class Home(models.Model):
