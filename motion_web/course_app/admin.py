@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from modeltranslation.admin import TranslationAdmin
 
 
 class UniversityImageInline(admin.TabularInline):
@@ -18,22 +19,48 @@ class HomeImageInline(admin.TabularInline):
 
 
 @admin.register(University)
-class UniversityAdmin(admin.ModelAdmin):
+class UniversityAdmin(TranslationAdmin):
     inlines = [UniversityImageInline, UnivDescriptionInline]
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
 
 @admin.register(Home)
-class HomeAdmin(admin.ModelAdmin):
+class HomeAdmin(TranslationAdmin):
     inlines = [HomeImageInline]
 
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
 
-admin.site.register(Country)
-admin.site.register(Speciality)
-admin.site.register(Education)
-admin.site.register(Exam)
+
+@admin.register(Country, Speciality, Education, Exam, Team, AboutUs, CambrigeExam, StudyAbroadProgram)
+class AllAdmin(TranslationAdmin):
+
+    class Media:
+        js = (
+            'http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js',
+            'http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js',
+            'modeltranslation/js/tabbed_translation_fields.js',
+        )
+        css = {
+            'screen': ('modeltranslation/css/tabbed_translation_fields.css',),
+        }
+
+
 admin.site.register(StudentReview)
-admin.site.register(Team)
 admin.site.register(Consultation)
-admin.site.register(AboutUs)
-admin.site.register(CambrigeExam)
-admin.site.register(StudyAbroadProgram)
