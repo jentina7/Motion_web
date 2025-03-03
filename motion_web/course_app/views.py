@@ -1,4 +1,4 @@
-from rest_framework import serializers, generics
+from rest_framework import serializers, generics, viewsets
 from .serializers import *
 from .models import *
 
@@ -44,9 +44,6 @@ class StudentReviewRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAP
 class ConsultationListAPIView(generics.ListAPIView):
     queryset = Consultation.objects.all()
     serializer_class = ConsultationSerializer
-from django.shortcuts import render
-from .serializers import *
-from rest_framework import viewsets, generics
 
 
 class ConsultationForHomeCreateAPIView(generics.CreateAPIView):
@@ -54,7 +51,7 @@ class ConsultationForHomeCreateAPIView(generics.CreateAPIView):
     serializer_class = ConsultationForHomeSerializer
 
 
-class HomeViewSet(viewsets.ModelViewSet):
+class HomeListAPIView(generics.ListAPIView):
     queryset = Home.objects.all()
     serializer_class = HomeSerializer
 

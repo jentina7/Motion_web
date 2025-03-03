@@ -10,6 +10,7 @@ class Country(models.Model):
     def __str__(self):
         return self.country_name
 
+
 class Speciality(models.Model):
     speciality_name = models.CharField(max_length=100, unique=True)
 
@@ -56,6 +57,7 @@ class UnivDescription(models.Model):
 class UniversityImage(models.Model):
     university_image = models.ForeignKey(University, on_delete=models.CASCADE, related_name="univ_image")
     image = models.ImageField(verbose_name="image/")
+
 
 # Модель экзаменов
 class Exam(models.Model):

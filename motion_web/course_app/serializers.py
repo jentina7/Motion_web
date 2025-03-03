@@ -1,8 +1,8 @@
 from rest_framework import serializers
 from .models import *
 
-# Exam
 
+# Exam
 
 class ExamListSerializer(serializers.ModelSerializer):
     class Meta:
@@ -91,11 +91,6 @@ class StudyAbroadProgramSerializer(serializers.ModelSerializer):
         fields = ['title', 'description', 'image', 'our_team']
 
 
-
-from rest_framework import serializers
-from .models import *
-
-
 class ConsultationForHomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Consultation
@@ -111,7 +106,7 @@ class HomeImageSerializer(serializers.ModelSerializer):
 class HomeSerializer(serializers.ModelSerializer):
     home_image = HomeImageSerializer(read_only=True)
     consultation = ConsultationForHomeSerializer()
-    # нужно добавить exam
+
     class Meta:
         model = Home
         fields = ["title", "description", "home_image", "consultation"]
@@ -140,9 +135,11 @@ class UniversityImageSerializer(serializers.ModelSerializer):
         model = UniversityImage
         fields = ["image"]
 
+
 # country-detail
 class UniversityListSerializer(serializers.ModelSerializer):
     univ_image = UniversityImageSerializer(many=True)
+
     class Meta:
         model = University
         fields = ["univ_image", "name", "location", "age"]
@@ -160,6 +157,7 @@ class UniversityDetailSerializer(serializers.ModelSerializer):
     education = EducationSerializer(read_only=True, many=True)
     description = UnivDescriptionSerializer()
     univ_image = UniversityImageSerializer(many=True)
+
     class Meta:
         model = University
         fields = ["univ_image", "name", "location", "date_of_foundation", "programs", "specialities",

@@ -1,10 +1,6 @@
 from .views import *
 from django.urls import path, include
 from .views import *
-from rest_framework import routers
-
-router = routers.DefaultRouter()
-router.register(r"home", HomeViewSet, basename="home-list"),
 
 urlpatterns = [
     path('exam/', ExamListAPIView.as_view(), name='exam_list'),
@@ -29,10 +25,9 @@ urlpatterns = [
     path('about_us/', AboutUsListAPIView.as_view(), name='about_us_list'),
     path('about_us_create/', AboutUsCreateAPIView.as_view(), name='about_us_create'),
     path('about_us/<int:pk>/', AboutUsRetrieveUpdateDestroyAPIView.as_view(), name='about_us_detail'),
-    path("", include(router.urls)),
 
-    # path('home/', HomeViewSet),
     path('country/', CountryListAPIView.as_view(), name='country_list'),
+    path('home/', HomeListAPIView.as_view(), name='home_list'),
     path('country/<int:pk>/', UniversityListAPIView.as_view(), name='country_detail'),
     path('university/<int:pk>/', UniversityDetailListAPIView.as_view(), name='university_detail'),
     path('consultation_for_home/', ConsultationForHomeCreateAPIView.as_view(), name='consultation_for_home'),

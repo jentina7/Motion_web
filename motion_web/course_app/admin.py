@@ -6,9 +6,11 @@ class UniversityImageInline(admin.TabularInline):
     model = UniversityImage
     extra = 1
 
+
 class UnivDescriptionInline(admin.StackedInline):
     model = UnivDescription
     extra = 0
+
 
 class HomeImageInline(admin.TabularInline):
     model = HomeImage
