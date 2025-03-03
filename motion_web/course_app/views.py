@@ -1,6 +1,8 @@
 from rest_framework import serializers, generics, viewsets
 from .serializers import *
 from .models import *
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.filters import SearchFilter
 
 
 class ExamListAPIView(generics.ListAPIView):
@@ -69,6 +71,8 @@ class EducationListAPIView(generics.ListAPIView):
 class CountryListAPIView(generics.ListAPIView):
     queryset = Country.objects.all()
     serializer_class = CountrySerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['country_name']
 
 
 class ConsultationCreateAPIView(generics.CreateAPIView):
@@ -111,6 +115,8 @@ class AboutUsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView)
 class UniversityListAPIView(generics.ListAPIView):
     queryset = University.objects.all()
     serializer_class = UniversityListSerializer
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['name']
 
 
 class UnivDescriptionViewSet(viewsets.ModelViewSet):
