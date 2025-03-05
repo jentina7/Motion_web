@@ -43,7 +43,7 @@ class University(models.Model):
 
 class UnivDescription(models.Model):
     university = models.OneToOneField(University, on_delete=models.CASCADE, related_name="description")
-    logo = models.ImageField(verbose_name="logo/")
+    logo = models.ImageField(upload_to="logo/")
     nominal_duration = models.CharField(max_length=40)
     awards = models.TextField()
     tuition_fee = models.CharField(max_length=60)
@@ -56,7 +56,7 @@ class UnivDescription(models.Model):
 
 class UniversityImage(models.Model):
     university_image = models.ForeignKey(University, on_delete=models.CASCADE, related_name="univ_image")
-    image = models.ImageField(verbose_name="image/")
+    image = models.ImageField(upload_to="image/")
 
 
 # Модель экзаменов

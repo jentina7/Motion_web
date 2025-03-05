@@ -3,6 +3,7 @@ from .serializers import *
 from .models import *
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from rest_framework.parsers import MultiPartParser, FormParser
 
 
 class ExamListAPIView(generics.ListAPIView):
@@ -12,11 +13,13 @@ class ExamListAPIView(generics.ListAPIView):
 
 class ExamCreateAPIView(generics.CreateAPIView):
     serializer_class = ExamCreateSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class ExamRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Exam.objects.all()
     serializer_class = ExamDetailSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class CambrigeExamListAPIView(generics.ListAPIView):
@@ -27,6 +30,7 @@ class CambrigeExamListAPIView(generics.ListAPIView):
 class CambrigeExamRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = CambrigeExam.objects.all()
     serializer_class = CambrigeExamSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class StudentReviewListAPIView(generics.ListAPIView):
@@ -36,11 +40,13 @@ class StudentReviewListAPIView(generics.ListAPIView):
 
 class StudentReviewCreateAPIView(generics.CreateAPIView):
     serializer_class = StudentReviewCreateSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class StudentReviewRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = StudentReview.objects.all()
     serializer_class = StudentReviewSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class ConsultationListAPIView(generics.ListAPIView):
@@ -56,6 +62,7 @@ class ConsultationForHomeCreateAPIView(generics.CreateAPIView):
 class HomeListAPIView(generics.ListAPIView):
     queryset = Home.objects.all()
     serializer_class = HomeSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class SpecialityListAPIView(generics.ListAPIView):
@@ -73,6 +80,7 @@ class CountryListAPIView(generics.ListAPIView):
     serializer_class = CountrySerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['country_name']
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class ConsultationCreateAPIView(generics.CreateAPIView):
@@ -91,11 +99,13 @@ class TeamListAPIView(generics.ListAPIView):
 
 class TeamCreateAPIView(generics.CreateAPIView):
     serializer_class = TeamCreateSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class TeamRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Team.objects.all()
     serializer_class = TeamSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class AboutUsListAPIView(generics.ListAPIView):
@@ -105,11 +115,13 @@ class AboutUsListAPIView(generics.ListAPIView):
 
 class AboutUsCreateAPIView(generics.CreateAPIView):
     serializer_class = AboutUsCreateSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class AboutUsRetrieveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = AboutUs.objects.all()
     serializer_class = AboutUsSerializer
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class UniversityListAPIView(generics.ListAPIView):
@@ -117,6 +129,7 @@ class UniversityListAPIView(generics.ListAPIView):
     serializer_class = UniversityListSerializer
     filter_backends = [DjangoFilterBackend, SearchFilter]
     search_fields = ['name']
+    parser_classes = [MultiPartParser, FormParser]
 
 
 class UnivDescriptionViewSet(viewsets.ModelViewSet):
@@ -127,3 +140,4 @@ class UnivDescriptionViewSet(viewsets.ModelViewSet):
 class UniversityDetailListAPIView(generics.ListAPIView):
     queryset = University.objects.all()
     serializer_class = UniversityDetailSerializer
+    parser_classes = [MultiPartParser, FormParser]
