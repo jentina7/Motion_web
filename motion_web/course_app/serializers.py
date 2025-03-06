@@ -75,7 +75,7 @@ class AboutUsCreateSerializer(serializers.ModelSerializer):
 
 class AboutUsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Team
+        model = AboutUs
         fields = ['title', 'description', 'image', 'our_team']
 
 
