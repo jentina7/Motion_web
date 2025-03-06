@@ -69,7 +69,7 @@ class TeamSerializer(serializers.ModelSerializer):
 
 class AboutUsCreateSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Team
+        model = AboutUs
         fields = '__all__'
 
 
